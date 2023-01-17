@@ -122,17 +122,20 @@ class MainActivity : AppCompatActivity() {
         }
 
         clear.setOnClickListener {
+            str = "0"
             ans.setText("0")
         }
 
         plus.setOnClickListener {
-            var n1 = ans.text.toString()
-            ans.text = n1
-            str = ""
-            ans.setText(str)
-            var result = n1.toDouble() + str.toDouble()
-            ans.setText("$result")
+            var old = ans.text.toString()
+            ans.text = old
+            ans.setText("$old")
+//            var result = old.toDouble() + str.toDouble()
+//            ans.setText("$result")
         }
 
+        equal.setOnClickListener {
+
+        }
     }
 }

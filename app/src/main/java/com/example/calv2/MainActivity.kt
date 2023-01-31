@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
         var old = 0
         var op = ""
         var op2 = ""
+        var result = 0
 
         one.setOnClickListener {
             ss = "1"
@@ -178,6 +179,7 @@ class MainActivity : AppCompatActivity() {
 
         clear.setOnClickListener {
             str = "0"
+            result = 0
             ans.setText("0")
         }
 
@@ -185,22 +187,23 @@ class MainActivity : AppCompatActivity() {
             isNewOp = true
             var num = ans.text.toString().toInt()
             var new:String = ans.text.toString()
-            var result =0
             if (op == ""){
                 op = "+"
             }
             else if (op2 == ""){
                 op2 = "+"
-                op = op2
                 old = num
                 result = new.toInt() + old
                 ans.setText("$result")
+                op = op2
             }
-            else if (op2 == "+"){
-                old = 0
-                op2 = ""
+            else if (op2 != ""){
+                old = result
                 result = old + new.toInt()
                 ans.setText("$result")
+                op = op2
+                op2 = "+"
+
             }
         }
 

@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity() {
         var ss:String
         var old = 0
         var op = ""
+        var op2 = ""
 
         one.setOnClickListener {
             ss = "1"
@@ -155,6 +156,16 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        point.setOnClickListener {
+            ss = "."
+            if (ans.text.toString() == "0")
+                ans.setText(ss)
+            else {
+                str = ans.text.toString().plus(ss)
+                ans.setText(str)
+            }
+        }
+
         del.setOnClickListener {
             if (ans.text.length != 1) {
                 str = ans.text.toString().dropLast(1)
@@ -173,9 +184,24 @@ class MainActivity : AppCompatActivity() {
         plus.setOnClickListener {
             isNewOp = true
             var num = ans.text.toString().toInt()
-            old = num
-            op = "+"
-            str = "0"
+            var new:String = ans.text.toString()
+            var result =0
+            if (op == ""){
+                op = "+"
+            }
+            else if (op2 == ""){
+                op2 = "+"
+                op = op2
+                old = num
+                result = new.toInt() + old
+                ans.setText("$result")
+            }
+            else if (op2 == "+"){
+                old = 0
+                op2 = ""
+                result = old + new.toInt()
+                ans.setText("$result")
+            }
         }
 
         minus.setOnClickListener {
@@ -216,7 +242,6 @@ class MainActivity : AppCompatActivity() {
             if (op == "+"){
                 result = new.toInt() + old
                 ans.setText(result.toString())
-
             }
             else if (op == "-"){
                 result = new.toInt() - old

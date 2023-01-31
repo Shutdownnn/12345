@@ -9,13 +9,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        var isNewOp = true
         var str:String
         var ss:String
+        var old = 0
+        var op = ""
+
         one.setOnClickListener {
             ss = "1"
             if (ans.text.toString() == "0")
                 ans.setText(ss)
             else {
+                if (isNewOp) {
+                    ans.setText("")
+                }
+                isNewOp = false
                 str = ans.text.toString().plus(ss)
                 ans.setText(str)
             }
@@ -26,6 +34,10 @@ class MainActivity : AppCompatActivity() {
             if (ans.text.toString() == "0")
                 ans.setText(ss)
             else {
+                if (isNewOp) {
+                    ans.setText("")
+                }
+                isNewOp = false
                 str = ans.text.toString().plus(ss)
                 ans.setText(str)
             }
@@ -36,6 +48,10 @@ class MainActivity : AppCompatActivity() {
             if (ans.text.toString() == "0")
                 ans.setText(ss)
             else {
+                if (isNewOp) {
+                    ans.setText("")
+                }
+                isNewOp = false
                 str = ans.text.toString().plus(ss)
                 ans.setText(str)
             }
@@ -46,6 +62,10 @@ class MainActivity : AppCompatActivity() {
             if (ans.text.toString() == "0")
                 ans.setText(ss)
             else {
+                if (isNewOp) {
+                    ans.setText("")
+                }
+                isNewOp = false
                 str = ans.text.toString().plus(ss)
                 ans.setText(str)
             }
@@ -56,6 +76,10 @@ class MainActivity : AppCompatActivity() {
             if (ans.text.toString() == "0")
                 ans.setText(ss)
             else {
+                if (isNewOp) {
+                    ans.setText("")
+                }
+                isNewOp = false
                 str = ans.text.toString().plus(ss)
                 ans.setText(str)
             }
@@ -66,6 +90,10 @@ class MainActivity : AppCompatActivity() {
             if (ans.text.toString() == "0")
                 ans.setText(ss)
             else {
+                if (isNewOp) {
+                    ans.setText("")
+                }
+                isNewOp = false
                 str = ans.text.toString().plus(ss)
                 ans.setText(str)
             }
@@ -76,6 +104,10 @@ class MainActivity : AppCompatActivity() {
             if (ans.text.toString() == "0")
                 ans.setText(ss)
             else {
+                if (isNewOp) {
+                    ans.setText("")
+                }
+                isNewOp = false
                 str = ans.text.toString().plus(ss)
                 ans.setText(str)
             }
@@ -86,6 +118,10 @@ class MainActivity : AppCompatActivity() {
             if (ans.text.toString() == "0")
                 ans.setText(ss)
             else {
+                if (isNewOp) {
+                    ans.setText("")
+                }
+                isNewOp = false
                 str = ans.text.toString().plus(ss)
                 ans.setText(str)
             }
@@ -96,6 +132,10 @@ class MainActivity : AppCompatActivity() {
             if (ans.text.toString() == "0")
                 ans.setText(ss)
             else {
+                if (isNewOp) {
+                    ans.setText("")
+                }
+                isNewOp = false
                 str = ans.text.toString().plus(ss)
                 ans.setText(str)
             }
@@ -106,6 +146,10 @@ class MainActivity : AppCompatActivity() {
             if (ans.text.toString() == "0")
                 ans.setText(ss)
             else {
+                if (isNewOp) {
+                    ans.setText("")
+                }
+                isNewOp = false
                 str = ans.text.toString().plus(ss)
                 ans.setText(str)
             }
@@ -127,15 +171,79 @@ class MainActivity : AppCompatActivity() {
         }
 
         plus.setOnClickListener {
-            var old = ans.text.toString()
-            ans.text = old
-            ans.setText("$old")
-//            var result = old.toDouble() + str.toDouble()
-//            ans.setText("$result")
+            isNewOp = true
+            var num = ans.text.toString().toInt()
+            old = num
+            op = "+"
+            str = "0"
+        }
+
+        minus.setOnClickListener {
+            isNewOp = true
+            var num = ans.text.toString().toInt()
+            old = num
+            op = "-"
+            str = "0"
+        }
+
+        multiply.setOnClickListener {
+            isNewOp = true
+            var num = ans.text.toString().toInt()
+            old = num
+            op = "*"
+            str = "0"
+        }
+
+        divide.setOnClickListener {
+            isNewOp = true
+            var num = ans.text.toString().toInt()
+            old = num
+            op = "/"
+            str = "0"
+        }
+
+        mod.setOnClickListener {
+            isNewOp = true
+            var num = ans.text.toString().toInt()
+            old = num
+            op = "%"
+            str = "0"
         }
 
         equal.setOnClickListener {
+            var new:String = ans.text.toString()
+            var result = 0
+            if (op == "+"){
+                result = new.toInt() + old
+                ans.setText(result.toString())
 
+            }
+            else if (op == "-"){
+                result = new.toInt() - old
+                ans.setText(result.toString())
+            }
+            else if (op == "*"){
+                result = new.toInt() * old
+                ans.setText(result.toString())
+            }
+            else if (op == "/"){
+                if (new == "0"){
+                    ans.setText("Cannot divide by zero")
+                }
+                else{
+                result = new.toInt() / old
+                ans.setText(result.toString())
+                }
+            }
+            else if (op == "%"){
+                if (new == "0"){
+                    ans.setText("Cannot divide by zero")
+                }
+                else{
+                result = new.toInt() % old
+                ans.setText(result.toString())
+                }
+            }
         }
     }
 }
